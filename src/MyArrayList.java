@@ -7,7 +7,7 @@ public class MyArrayList<T> implements MyList<T>{
         size=0;
     }
     @Override
-    public int getSize(){
+    public int size(){
         return size;
     }
     @Override
@@ -63,5 +63,13 @@ public class MyArrayList<T> implements MyList<T>{
         }
         return (T) elements[index];
     }
-
+    @Override
+    public int indexOf(Object o) {
+        for (int i = 0; i < size; i++) {
+            if (o.equals(elements[i])) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
