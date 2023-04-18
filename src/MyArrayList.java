@@ -1,5 +1,5 @@
 import java.util.Arrays;
-public class MyArrayList implements MyList<T>{
+public class MyArrayList<T> implements MyList<T>{
     private Object[] elements;
     private int size;
     public MyArrayList(){
@@ -21,11 +21,21 @@ public class MyArrayList implements MyList<T>{
                 newCapacity = minCapacity;
             }
             elements = Arrays.copyOf(elements, newCapacity);
-        }
+        }}
     @Override
     public void add(T item){
         ensureCapacity(size+1);
         elements[size++]=item;
     }
+    @Override
+    public void add(T item, int index){
+        if(index<0||index>size){
+            return;
+        }
+        ensureCapacity(size+1);
+        System.arraycopy(elements,index,elements,index+1,size-index);
+        elements[index]=item;
+        size++;
+        }
 
 }
