@@ -81,4 +81,8 @@ public class MyArrayList<T> implements MyList<T>{
         }
         return -1;
     }
+    @Override
+    public void sort() {
+        Arrays.sort(elements, 0, size);
+    }
 }
