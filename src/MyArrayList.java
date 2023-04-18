@@ -56,5 +56,12 @@ public class MyArrayList<T> implements MyList<T>{
         elements[--size]=null;
         return item;
     }
+    @Override
+    public T get(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+        return (T) elements[index];
+    }
 
 }
