@@ -72,4 +72,13 @@ public class MyArrayList<T> implements MyList<T>{
         }
         return -1;
     }
+    @Override
+    public int lastIndexOf(Object o) {
+        for (int i = size - 1; i >= 0; i--) {
+            if (o.equals(elements[i])) {
+                return i;
+            }
+        }
+        return -1;
+    }
 }
