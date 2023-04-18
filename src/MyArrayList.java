@@ -12,7 +12,7 @@ public class MyArrayList<T> implements MyList<T>{
     }
     @Override
     public boolean contains(Object o){
-        return indexOf(o)!=-1;
+        return indexOf(o)>=0;
     }
     private void ensureCapacity(int minCapacity) {
         if (minCapacity > elements.length) {
