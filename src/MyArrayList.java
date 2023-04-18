@@ -37,5 +37,24 @@ public class MyArrayList<T> implements MyList<T>{
         elements[index]=item;
         size++;
         }
+    @Override
+    public boolean remove(T item){
+        int index=indexOf(item);
+        if(index==-1){
+            return false;
+        }
+        remove(index);
+        return true;
+    }
+    @Override
+    public T remove(int index){
+        if(index<0||index>=size){
+            return;
+        }
+        T item=(T) elements[index];
+        System.arraycopy(elements,index+1,elements,index,size-index-1);
+        elements[--size]=null;
+        return item;
+    }
 
 }
