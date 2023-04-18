@@ -49,7 +49,7 @@ public class MyArrayList<T> implements MyList<T>{
     @Override
     public T remove(int index){
         if(index<0||index>=size){
-            return;
+            throw new IndexOutOfBoundsException();
         }
         T item=(T) elements[index];
         System.arraycopy(elements,index+1,elements,index,size-index-1);
@@ -84,5 +84,10 @@ public class MyArrayList<T> implements MyList<T>{
     @Override
     public void sort() {
         Arrays.sort(elements, 0, size);
+    }
+    @Override
+    public void clear() {
+        Arrays.fill(elements, null);
+        size = 0;
     }
 }
