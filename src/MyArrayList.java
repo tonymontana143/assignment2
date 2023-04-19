@@ -1,69 +1,81 @@
 import java.util.Arrays;
-public class MyArrayList<T> implements MyList<T>{
-    private Object[] elements;
-    private int size;
-    public MyArrayList(){
-        elements=new Object[10];
-        size=0;
+
+public class MyArrayList<T> implements MyList<T> {
+    private Object[] elements;  // the array to store the elements
+    private int size;           // the number of elements currently stored in the array
+
+    public MyArrayList() {
+        elements = new Object[10];  // initialize the array with a default capacity of 10
+        size = 0;                   // initially there are no elements in the array
     }
+
     @Override
-    public int size(){
+    public int size() {
         return size;
     }
+
     @Override
-    public boolean contains(Object o){
-        return indexOf(o)>=0;
+    public boolean contains(Object o) {
+        return indexOf(o) != -1;    // check if the element is in the array
     }
+
     private void ensureCapacity(int minCapacity) {
+        // increase the capacity of the array if needed
         if (minCapacity > elements.length) {
-            int newCapacity = elements.length * 2;
+            int newCapacity = elements.length * 2;     // double the capacity
             if (newCapacity < minCapacity) {
-                newCapacity = minCapacity;
+                newCapacity = minCapacity;              // make sure the new capacity is at least as large as the minimum capacity needed
             }
-            elements = Arrays.copyOf(elements, newCapacity);
-        }}
-    @Override
-    public void add(T item){
-        ensureCapacity(size+1);
-        elements[size++]=item;
+            elements = Arrays.copyOf(elements, newCapacity);  // copy the elements to a new array with the new capacity
+        }
     }
+
     @Override
-    public void add(T item, int index){
-        if(index<0||index>size){
-            return;
-        }
-        ensureCapacity(size+1);
-        System.arraycopy(elements,index,elements,index+1,size-index);
-        elements[index]=item;
-        size++;
-        }
-    @Override
-    public boolean remove(T item){
-        int index=indexOf(item);
-        if(index==-1){
-            return false;
-        }
-        remove(index);
+    public boolean add(T item) {
+        ensureCapacity(size + 1);   // increase the capacity if necessary
+        elements[size++] = item;    // add the element to the end of the array
         return true;
     }
+
     @Override
-    public T remove(int index){
-        if(index<0||index>=size){
-            throw new IndexOutOfBoundsException();
+    public void add(T item, int index) {
+        if (index < 0 || index > size) {
+            return;                 // do nothing if the index is out of bounds
         }
-        T item=(T) elements[index];
-        System.arraycopy(elements,index+1,elements,index,size-index-1);
-        elements[--size]=null;
-        return item;
+        ensureCapacity(size + 1);   // increase the capacity if necessary
+        System.arraycopy(elements, index, elements, index + 1, size - index);  // shift the elements after the index to the right
+        elements[index] = item;     // add the element to the specified index
+        size++;                     // increase the size of the array
     }
+
+    @Override
+    public boolean remove(T item) {
+        int index = indexOf(item);  // find the index of the element
+        if (index == -1) {
+            return false;           // return false if the element is not in the array
+        }
+        remove(index);              // remove the element at the specified index
+        return true;                // return true to indicate that an element was removed
+    }
+
+    @Override
+    public T remove(int index) {
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();  // throw an exception if the index is out of bounds
+        }
+        T item = (T) elements[index];               // save the element to be removed
+        System.arraycopy(elements, index + 1, elements, index, size - index - 1);  // shift the elements after the index to the left
+        elements[--size] = null;                    // remove the last element and decrement the size
+        return item;                                // return the removed element
+    }
+
     @Override
     public T get(int index) {
         if (index < 0 || index >= size) {
-            throw new IndexOutOfBoundsException();
+            throw new IndexOutOfBoundsException();  // throw an exception if the index is out of bounds
         }
-        return (T) elements[index];
-    }
-    @Override
+        return (T) elements[index];                 // return the element at the specified index
+    } @Override
     public int indexOf(Object o) {
         for (int i = 0; i < size; i++) {
             if (o.equals(elements[i])) {
@@ -91,3 +103,6 @@ public class MyArrayList<T> implements MyList<T>{
         size = 0;
     }
 }
+
+
+

@@ -32,3 +32,40 @@ The **MyArrayList** class is an implementation of the MyList interface, which re
 **Private Methods**
 
 `void ensureCapacity(int minCapacity)` - Increases the capacity of the array, if necessary, to ensure that it can hold at least the number of elements specified by the argument minCapacity
+
+
+
+
+
+**Documentation for MyLinkedList<T>:**
+
+This is a generic class that implements the MyList<T> interface. It represents a doubly linked list that can store elements of any type T. The class provides methods for adding, removing, and accessing elements in the list, as well as sorting the list.
+
+**Constructor:**
+
+`public MyLinkedList()`: Constructs an empty MyLinkedList object.
+
+**Methods:**
+
+
+`public int size()`: Returns the number of elements in the list.
+
+`public boolean contains(Object o)`: Returns true if the list contains the specified element, false otherwise.
+
+`public boolean add(T item)`: Adds the specified element to the end of the list and returns true.
+
+`public void add(T element, int index)`: Inserts the specified element at the specified position in the list.
+
+`public boolean remove(Object o)`: Removes the first occurrence of the specified element from the list and returns true if the element was found, false otherwise.
+
+`public T remove(int index)`: Removes the element at the specified position in the list and returns it.
+
+`public void clear()`: Removes all elements from the list.
+
+`public T get(int index)`: Returns the element at the specified position in the list.
+
+`public int indexOf(Object o)`: Returns the index of the first occurrence of the specified element in the list, or -1 if the element is not found.
+
+`public int lastIndexOf(Object o)`: Returns the index of the last occurrence of the specified element in the list, or -1 if the element is not found.
+
+`public void sort()`: Sorts the elements in the list in ascending order, using the natural ordering of the elements.
