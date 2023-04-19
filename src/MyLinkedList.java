@@ -151,16 +151,58 @@ public class MyLinkedList<T> implements MyList<T> {
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        if (head == null) {
+            return -1;
+        }
+        return indexOfHelper(o, head, 0);
+    }
+
+    private int indexOfHelper(Object o, Node current, int index) {
+        if (current == null) {
+            return -1;
+        }
+        if (current.elements.equals(o)) {
+            return index;
+        }
+        return indexOfHelper(o, current.next, index + 1);
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        if (tail == null) {
+            return -1;
+        }
+        return lastIndexOfHelper(o, tail, size - 1);
+    }
+
+    private int lastIndexOfHelper(Object o, Node current, int index) {
+        if (current == null) {
+            return -1;
+        }
+        if (current.elements.equals(o)) {
+            return index;
+        }
+        return lastIndexOfHelper(o, current.previous, index - 1);
     }
 
     @Override
     public void sort() {
+        if (size <= 1) {
+            return;
+        }
 
+        Node previous = head.next;
+        while (previous != null) {
+            Node curr = previous.next;
+            while (curr != null) {
+                if (((Comparable<T>) previous.elements).compareTo((T) curr.elements) > 0) {
+                    T temp = (T) previous.elements;
+                    previous.elements = curr.elements;
+                    curr.elements = temp;
+                }
+                curr = curr.next;
+            }
+            previous = previous.next;
+        }
     }
 }
