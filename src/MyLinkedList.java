@@ -64,15 +64,57 @@ public class MyLinkedList<T> implements MyList<T> {
     }
 
     @Override
-    public boolean remove(T item) {
+    public boolean remove(Object o) {
+        Node current = head;
+        while (current != null) {
+            if (current.elements.equals(o)) {
+                if (current == head) {
+                    head = current.next;
+                    if (head != null) {
+                        head.previous = null;
+                    }
+                } else if (current == tail) {
+                    tail = current.previous;
+                    if (tail != null) {
+                        tail.next = null;
+                    }
+                } else {
+                    current.previous.next = current.next;
+                    current.next.previous = current.previous;
+                }
+                size--;
+                return true;
+            }
+            current = current.next;
+        }
         return false;
     }
-
     @Override
     public T remove(int index) {
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException("Index out of range: " + index);
+        }
+        Node current = head;
+        for (int i = 0; i < index; i++) {
+            current = current.next;
+        }
+        if (current == head) {
+            head = current.next;
+            if (head != null) {
+                head.previous = null;
+            }
+        } else if (current == tail) {
+            tail = current.previous;
+            if (tail != null) {
+                tail.next = null;
+            }
+        } else {
+            current.previous.next = current.next;
+            current.next.previous = current.previous;
+        }
+        size--;
+        return (T) current.elements;
     }
-
     @Override
     public void clear() {
         size = 0;
