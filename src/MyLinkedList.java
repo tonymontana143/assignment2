@@ -1,20 +1,26 @@
 public class MyLinkedList<T> implements MyList<T>{
     private class Node<T>{
-        public T elements;
-        public Node<T> next;
-        public Node<T> previous;
-        public Node(T elements){
+        T elements;
+        Node next;
+        Node previous;
+        public Node(T elements,Node next,Node previous){
             this.elements=elements;
             this.next=null;
             this.previous= null;
         }
     }
-    private Object[] head;
-    private Object[] tail;
+    private Node head;
+    private Node tail;
     private int size;
+    public MyLinkedList(){
+        size=0;
+        head=null;
+        tail=null;
+    }
+
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
