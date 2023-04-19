@@ -1,21 +1,24 @@
-public class MyLinkedList<T> implements MyList<T>{
-    private class Node<T>{
+public class MyLinkedList<T> implements MyList<T> {
+    private class Node<T> {
         T elements;
         Node next;
         Node previous;
-        public Node(T elements,Node next,Node previous){
-            this.elements=elements;
-            this.next=null;
-            this.previous= null;
+
+        public Node(T elements, Node next, Node previous) {
+            this.elements = elements;
+            this.next = null;
+            this.previous = null;
         }
     }
+
     private Node head;
     private Node tail;
     private int size;
-    public MyLinkedList(){
-        size=0;
-        head=null;
-        tail=null;
+
+    public MyLinkedList() {
+        size = 0;
+        head = null;
+        tail = null;
     }
 
     @Override
@@ -29,13 +32,35 @@ public class MyLinkedList<T> implements MyList<T>{
     }
 
     @Override
-    public void add(T item) {
-
+    public boolean add(T item) {
+        Node node = new Node(item, null, tail);
+        if (size == 0) {
+            head = node;
+        } else {
+            tail.next = node;
+        }
+        tail = node;
+        size++;
+        return false;
     }
 
     @Override
-    public void add(T item, int index) {
-
+    public void add(T element, int index) {
+        if (index < 0 || index > size) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (index == size) {
+            add(element);
+        } else {
+            Node current = head;
+            for (int i = 0; i < index; i++) {
+                current = current.next;
+            }
+            Node node = new Node(element, current, current.previous);
+            current.previous.next = node;
+            current.previous = node;
+            size++;
+        }
     }
 
     @Override
