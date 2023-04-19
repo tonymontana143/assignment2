@@ -11,6 +11,7 @@ public class MyLinkedList<T> implements MyList<T>{
     }
     private Object[] head;
     private Object[] tail;
+    private int size;
     @Override
     public int size() {
         return 0;
