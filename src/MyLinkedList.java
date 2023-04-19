@@ -9,6 +9,8 @@ public class MyLinkedList<T> implements MyList<T>{
             this.previous= null;
         }
     }
+    private Object[] head;
+    private Object[] tail;
     @Override
     public int size() {
         return 0;
