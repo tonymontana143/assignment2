@@ -8,6 +8,16 @@ public class MyArrayList<T> implements MyList<T> {
         elements = new Object[10];  // initialize the array with a default capacity of 10
         size = 0;                   // initially there are no elements in the array
     }
+    public void reverse(){
+        for(int i=0;i< (size()/2);i++){
+            Object temp=elements[i];
+            elements[i]=elements[size()-i-1];
+            elements[size()-i-1]=temp;
+
+        }
+    }
+
+
 
     @Override
     public int size() {
@@ -35,6 +45,23 @@ public class MyArrayList<T> implements MyList<T> {
         ensureCapacity(size + 1);   // increase the capacity if necessary
         elements[size++] = item;    // add the element to the end of the array
         return true;
+    }
+
+
+    @Override
+    public void adAll(int[] collection){
+        int collectionSize=collection.length;
+        int minLength=size+collectionSize;
+        if(minLength> elements.length){
+            int newCapacity= elements.length*2;
+            if(newCapacity<minLength){
+                newCapacity=minLength;
+            }
+            elements=Arrays.copyOf(elements,newCapacity);
+        }
+        for(int item:collection){
+            elements[size++]=item;
+        }
     }
 
     @Override
