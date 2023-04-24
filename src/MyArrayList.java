@@ -4,6 +4,7 @@ import java.util.Collection;
 public class MyArrayList<T> implements MyList<T> {
     private Object[] elements;  // the array to store the elements
     private int size;           // the number of elements currently stored in the array
+    private Collection<?> collection;
 
     public MyArrayList() {
         elements = new Object[10];  // initialize the array with a default capacity of 10
@@ -51,6 +52,7 @@ public class MyArrayList<T> implements MyList<T> {
 
     @Override
     public void adAll(Collection<? extends> collection){
+        this.collection = collection;
         int collectionSize=collection.size();
         int minLength=size+collectionSize;
         if(minLength> elements.length){
