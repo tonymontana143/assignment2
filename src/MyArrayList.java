@@ -51,7 +51,7 @@ public class MyArrayList<T> implements MyList<T> {
 
 
     @Override
-    public void adAll(Collection<? extends> collection){
+    public void adAll(Collection<? extends> collection){ //ADD ALL
         this.collection = collection;
         int collectionSize=collection.size();
         int minLength=size+collectionSize;
