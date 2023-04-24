@@ -2,6 +2,7 @@ public interface MyList<T> {
     int size();
     boolean contains(Object o);
     boolean add(T item);
+    void adAll(int[] collection);
     void add(T item, int index);
     boolean remove(T item);
     T remove(int index);
@@ -10,4 +11,5 @@ public interface MyList<T> {
     int indexOf(Object o);
     int lastIndexOf(Object o);
     void sort();
+    void reverse();
 }

@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Collection;
 
 public class MyArrayList<T> implements MyList<T> {
     private Object[] elements;  // the array to store the elements
@@ -49,8 +50,8 @@ public class MyArrayList<T> implements MyList<T> {
 
 
     @Override
-    public void adAll(int[] collection){
-        int collectionSize=collection.length;
+    public void adAll(Collection<? extends> collection){
+        int collectionSize=collection.size();
         int minLength=size+collectionSize;
         if(minLength> elements.length){
             int newCapacity= elements.length*2;
@@ -59,7 +60,7 @@ public class MyArrayList<T> implements MyList<T> {
             }
             elements=Arrays.copyOf(elements,newCapacity);
         }
-        for(int item:collection){
+        for(Object item:collection){
             elements[size++]=item;
         }
     }

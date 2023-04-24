@@ -1,3 +1,4 @@
+import java.util.Random;
 public class MyLinkedList<T> implements MyList<T> {
 
     // inner class Node to hold each element and links to previous and next elements
@@ -59,6 +60,26 @@ public class MyLinkedList<T> implements MyList<T> {
         tail = node;
         size++;
         return false;
+    }
+
+    @Override
+    public void addAll(T item) {
+
+    }
+    @Override
+    public void addAll(Collection<? extends T> collection) {
+        int collectionSize = collection.size();
+        int minLength = size + collectionSize;
+        if (minLength > arr.length) {
+            int newCapacity = arr.length * 2;
+            if (newCapacity < minLength) {
+                newCapacity = minLength;
+            }
+            arr = Arrays.copyOf(arr, newCapacity);
+        }
+        for (T item : collection) {
+            arr[size++] = item;
+        }
     }
 
     // inserts the specified element at the specified index in the list
@@ -219,4 +240,27 @@ public class MyLinkedList<T> implements MyList<T> {
             previous = previous.next;
         }
     }
-}
+
+    @Override
+        public void reverse() {
+            if (head == null) {
+                return;
+            }
+            Node prev = null;
+            Node current = head;
+            Node next = null;
+            while (current != null) {
+                next = current.next;
+                prev = current;
+                current = next;
+            }
+            head = prev;
+        }
+
+
+    }
+
+
+
+
+

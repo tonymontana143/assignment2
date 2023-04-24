@@ -89,6 +89,8 @@ public class Main {
                                 break;
                             case 12:
                                 break;
+                            case 13:
+                                arrayList.reverse();
                             default:
                                 break;
                         }
